@@ -1,0 +1,28 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-bottom: 1px solid var(--main-color);
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+nav ul li {
+  display: flex;
+  align-items: center;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+nav ul li a:hover {
+  color: var(--main-color);
+}
+.logo {
+  height: 80px;
+}
