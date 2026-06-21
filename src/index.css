@@ -1,4 +1,9 @@
 :root {
   font-family: "Montserrat", sans-serif;
   --main-color: #eb3f3f;
+  --secondary-color: #1e1e1e;
+  --accent-color: #cccccc;
+  --dark-accent-color: #616060;
+  --background-color: #ffffff;
+  --white-text-color: #fff;
 }
