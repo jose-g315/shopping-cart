@@ -1,6 +1,6 @@
 import App from './App';
 import Home from './pages/home/Home';
-import Shop from './pages/Shop';
+import Shop from './pages/shop/Shop';
 import Cart from './pages/Cart';
 import ErrorPage from './pages/ErrorPage';
 
