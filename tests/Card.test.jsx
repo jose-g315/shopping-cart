@@ -1,18 +1,13 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from '@testing-library/react';
-import { vi } from 'vitest';
-import { CartContext } from '../src/App';
+import { describe, it, expect, vi } from "vitest";
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { renderWithCart } from './test-utils';
 import Card from '../src/components/Card/Card';
 
-const mockCartState = { cart: [], setCart: vi.fn() };
+const mockSetCart = vi.fn();
 
 function renderCard(props) {
-  return render(
-    <CartContext.Provider value={mockCartState}>
-      <Card {...props} />
-    </CartContext.Provider>
-  );
+  return renderWithCart(<Card {...props} />, { setCart: mockSetCart });
 }
 
 describe('Card', () => {
