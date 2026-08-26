@@ -1,11 +1,23 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+import { CartContext } from '../src/App';
 import userEvent from '@testing-library/user-event';
 import Card from '../src/components/Card/Card';
 
+const mockCartState = { cart: [], setCart: vi.fn() };
+
+function renderCard(props) {
+  return render(
+    <CartContext.Provider value={mockCartState}>
+      <Card {...props} />
+    </CartContext.Provider>
+  );
+}
+
 describe('Card', () => {
   it('renders without crashing', () => {
-    render(<Card title="Test Product" description="This is a test product." price={9.99} url="https://example.com/image.jpg" />);
+    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
   });
 
   it('displays the correct title, description, price, and image', () => {
@@ -14,7 +26,7 @@ describe('Card', () => {
     const testPrice = 9.99;
     const testUrl = "https://example.com/image.jpg";
 
-    render(<Card title={testTitle} description={testDescription} price={testPrice} url={testUrl} />);
+    renderCard({ title: testTitle, description: testDescription, price: testPrice, url: testUrl });
 
     expect(screen.getByText(testTitle)).toBeInTheDocument();
     expect(screen.getByText(testDescription)).toBeInTheDocument();
@@ -24,7 +36,7 @@ describe('Card', () => {
   });
   
   it('increments and decrements quantity correctly', async () => {
-    render(<Card title="Test Product" description="This is a test product." price={9.99} url="https://example.com/image.jpg" />);
+    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
     
     const user = userEvent.setup();
     const incrementButton = screen.getByText('+');
@@ -55,7 +67,7 @@ describe('Card', () => {
     expect(quantityInput.value).toBe('1');
   });
   it('handles manual input correctly', async () => {
-    render(<Card title="Test Product" description="This is a test product." price={9.99} url="https://example.com/image.jpg" />);
+    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
     
     const user = userEvent.setup();
     const quantityInput = screen.getByRole('spinbutton');
@@ -84,7 +96,7 @@ describe('Card', () => {
     
   });
   it('handles manual and incremenent/decrement input correctly', async () => {
-    render(<Card title="Test Product" description="This is a test product." price={9.99} url="https://example.com/image.jpg" />);
+    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
     
     const user = userEvent.setup();
     const incrementButton = screen.getByText('+');
@@ -118,7 +130,7 @@ describe('Card', () => {
     expect(quantityInput.value).toBe('9');
   });
   it('handles submit correctly', async ()=> {
-    render(<Card title="Test Product" description="This is a test product." price={9.99} url="https://example.com/image.jpg" />);
+    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
     
     const user = userEvent.setup();
     const quantityInput = screen.getByRole('spinbutton');

@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Shop from '../src/pages/shop/Shop';
 
-vi.mock('../src/util/useProductUrl');
-import useProductUrl from '../src/util/useProductUrl';
+vi.mock('../src/util/useProducts');
+import useProductUrl from '../src/util/useProducts';
 
 const fakeProducts = [
   { id: 1, title: 'Test Shirt', description: 'A shirt', price: 9.99, image: 'shirt.jpg' },
@@ -18,7 +18,11 @@ describe('Shop', () => {
   });
 
   it('shows an error message when the fetch fails', () => {
-    useProductUrl.mockReturnValue({ products: null, error: new Error('server error'), loading: false });
+    useProductUrl.mockReturnValue({
+      products: null,
+      error: new Error('server error'),
+      loading: false,
+    });
     render(<Shop />);
     expect(screen.getByText('Error: server error')).toBeInTheDocument();
   });
