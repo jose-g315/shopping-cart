@@ -1,7 +1,7 @@
 import App from './App';
 import Home from './pages/home/Home';
 import Shop from './pages/shop/Shop';
-import Cart from './pages/Cart';
+import Cart from './pages//cart/Cart';
 import ErrorPage from './pages/ErrorPage';
 
 const routes = [
