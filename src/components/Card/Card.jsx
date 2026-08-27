@@ -6,23 +6,6 @@ export default function Card({ id, title, description, price, url }) {
   const cartState = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
 
-  function addToCart({ id, title, description, price, url }, finalQuantity) {
-    cartState.setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.product.id === id);
-      if (existingItem) {
-        // If the item already exists in the cart, update its quantity
-        return prevCart.map((item) =>
-          item.product.id === id ? { ...item, quantity: item.quantity + finalQuantity } : item
-        );
-      }
-      // If the item doesn't exist in the cart, add it as a new entry
-      return [
-        ...prevCart,
-        { product: { id, title, description, price, url }, quantity: finalQuantity },
-      ];
-    });
-  }
-
   function increment() {
     setQuantity((prev) => (prev < 10 ? prev + 1 : 10));
   }
@@ -50,7 +33,7 @@ export default function Card({ id, title, description, price, url }) {
   function handleSubmit(e) {
     e.preventDefault();
     const finalQuantity = quantity === '' ? 1 : quantity;
-    addToCart({ id, title, description, price, url }, finalQuantity);
+    cartState.addToCart({ id, title, description, price, url }, finalQuantity);
     console.log(`Added ${finalQuantity} of ${title} (${id}) to cart.`);
     setQuantity(1);
   }
