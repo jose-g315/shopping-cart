@@ -1,12 +1,15 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen } from '@testing-library/react';
-import { renderWithCart } from './test-utils';
+import { renderWithCartContextProvider } from './test-utils';
 import Cart from '../src/pages/cart/Cart';
 
 const mockSetCart = vi.fn();
 
 function renderCart(cart = []) {
-  return renderWithCart(<Cart />, { cart, setCart: mockSetCart });
+  return renderWithCartContextProvider(<Cart />, {
+    cart,
+    setCart: mockSetCart,
+  });
 }
 
 describe('Cart', () => {

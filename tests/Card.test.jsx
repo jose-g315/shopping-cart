@@ -1,27 +1,39 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithCart } from './test-utils';
+import { renderWithCartContextProvider } from './test-utils';
 import Card from '../src/components/Card/Card';
 
 const mockSetCart = vi.fn();
 
 function renderCard(props) {
-  return renderWithCart(<Card {...props} />, { setCart: mockSetCart });
+  return renderWithCartContextProvider(<Card {...props} />, {
+    setCart: mockSetCart,
+  });
 }
 
 describe('Card', () => {
   it('renders without crashing', () => {
-    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
+    renderCard({
+      title: 'Test Product',
+      description: 'This is a test product.',
+      price: 9.99,
+      url: 'https://example.com/image.jpg',
+    });
   });
 
   it('displays the correct title, description, price, and image', () => {
-    const testTitle = "Test Product";
-    const testDescription = "This is a test product.";
+    const testTitle = 'Test Product';
+    const testDescription = 'This is a test product.';
     const testPrice = 9.99;
-    const testUrl = "https://example.com/image.jpg";
+    const testUrl = 'https://example.com/image.jpg';
 
-    renderCard({ title: testTitle, description: testDescription, price: testPrice, url: testUrl });
+    renderCard({
+      title: testTitle,
+      description: testDescription,
+      price: testPrice,
+      url: testUrl,
+    });
 
     expect(screen.getByText(testTitle)).toBeInTheDocument();
     expect(screen.getByText(testDescription)).toBeInTheDocument();
@@ -29,10 +41,15 @@ describe('Card', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', testUrl);
     expect(screen.getByRole('img')).toHaveAttribute('alt', testTitle);
   });
-  
+
   it('increments and decrements quantity correctly', async () => {
-    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
-    
+    renderCard({
+      title: 'Test Product',
+      description: 'This is a test product.',
+      price: 9.99,
+      url: 'https://example.com/image.jpg',
+    });
+
     const user = userEvent.setup();
     const incrementButton = screen.getByText('+');
     const decrementButton = screen.getByText('-');
@@ -50,20 +67,24 @@ describe('Card', () => {
     }
     expect(quantityInput.value).toBe('10');
 
-    
     // Decrement quantity
     await user.click(decrementButton);
     expect(quantityInput.value).toBe('9');
 
     // Decrement below 1 should not change the value
-      for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       await user.click(decrementButton);
     }
     expect(quantityInput.value).toBe('1');
   });
   it('handles manual input correctly', async () => {
-    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
-    
+    renderCard({
+      title: 'Test Product',
+      description: 'This is a test product.',
+      price: 9.99,
+      url: 'https://example.com/image.jpg',
+    });
+
     const user = userEvent.setup();
     const quantityInput = screen.getByRole('spinbutton');
 
@@ -75,7 +96,7 @@ describe('Card', () => {
     // Invalid input (greater than 10)
     await user.clear(quantityInput);
     await user.type(quantityInput, '15');
-    expect(quantityInput.value).toBe('10'); // Should be 10 since it is the highest limit  
+    expect(quantityInput.value).toBe('10'); // Should be 10 since it is the highest limit
 
     // Invalid input (less than 1)
     await user.clear(quantityInput);
@@ -87,12 +108,15 @@ describe('Card', () => {
     expect(quantityInput.value).toBe(''); // Should be empty
     await user.tab(); // Move focus away to trigger blur
     expect(quantityInput.value).toBe('1'); // Should reset to 1
-
-    
   });
   it('handles manual and incremenent/decrement input correctly', async () => {
-    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
-    
+    renderCard({
+      title: 'Test Product',
+      description: 'This is a test product.',
+      price: 9.99,
+      url: 'https://example.com/image.jpg',
+    });
+
     const user = userEvent.setup();
     const incrementButton = screen.getByText('+');
     const decrementButton = screen.getByText('-');
@@ -124,13 +148,18 @@ describe('Card', () => {
     await user.click(decrementButton);
     expect(quantityInput.value).toBe('9');
   });
-  it('handles submit correctly', async ()=> {
-    renderCard({ title: "Test Product", description: "This is a test product.", price: 9.99, url: "https://example.com/image.jpg" });
-    
+  it('handles submit correctly', async () => {
+    renderCard({
+      title: 'Test Product',
+      description: 'This is a test product.',
+      price: 9.99,
+      url: 'https://example.com/image.jpg',
+    });
+
     const user = userEvent.setup();
     const quantityInput = screen.getByRole('spinbutton');
     const addToCartButton = screen.getByText('Add to Cart');
- 
+
     // Empty input should reset to 1 on submit
     await user.clear(quantityInput);
     expect(quantityInput.value).toBe(''); // Should be empty
@@ -142,5 +171,5 @@ describe('Card', () => {
     await user.type(quantityInput, '5');
     await user.click(addToCartButton);
     expect(quantityInput.value).toBe('1');
-  })
+  });
 });

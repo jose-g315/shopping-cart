@@ -18,6 +18,7 @@ export default function Cart() {
               key={item.product.id}
               id={item.product.id}
               title={item.product.title}
+              url={item.product.url}
               price={item.product.price}
               quantity={item.quantity}
             />

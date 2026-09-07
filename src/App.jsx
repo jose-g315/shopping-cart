@@ -28,6 +28,17 @@ function App() {
       ];
     });
   }
+  function modifyQuantity({ id }, newQuantity) {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.product.id === id);
+      if (!existingItem || existingItem.quantity === newQuantity) {
+        return prevCart;
+      }
+      return prevCart.map((item) =>
+        item.product.id === id ? { ...item, quantity: newQuantity } : item
+      );
+    });
+  }
   function removeFromCart(id) {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.product.id === id);
@@ -37,7 +48,9 @@ function App() {
     });
   }
   return (
-    <CartContext.Provider value={{ cart, setCart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, setCart, addToCart, modifyQuantity, removeFromCart }}
+    >
       <NavBar />
       <Outlet />
     </CartContext.Provider>
