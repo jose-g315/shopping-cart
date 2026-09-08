@@ -40,10 +40,14 @@ export default function Card({ id, title, description, price, url }) {
 
   return (
     <div className={styles.card}>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <p>${price}</p>
-      <img src={url} alt={title} />
+      <div>
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+      <div>
+        <p class={styles.priceP}>${price}</p>
+        <img src={url} alt={title} />
+      </div>
       <form action='' onSubmit={handleSubmit}>
         <button
           type='button'

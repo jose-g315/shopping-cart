@@ -1,5 +1,7 @@
 import useProducts from '../../util/useProducts';
 import Card from '../../components/Card/Card';
+import styles from './Shop.module.css';
+
 export default function Shop() {
   const { products, error, loading } = useProducts();
 
@@ -7,10 +9,10 @@ export default function Shop() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className='shop-container'>
+    <div className={styles.shopContainer}>
       <h1>Shop our great selection of products below!</h1>
       <p>(Max of 10 per item)</p>
-      <div>
+      <div className={styles.cardContainer}>
         {products?.map((product) => (
           <Card
             key={product.id}

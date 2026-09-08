@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   height: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid var(--main-color);
   border-radius: 8px;
   padding: 16px;
-  background-color: var(--accent-color);
+  background-color: var(--background-color);
 }
 .card h2 {
   font-size: 1.5rem;
@@ -20,4 +21,56 @@
 .card p:last-of-type {
   font-weight: bold;
   color: #333;
+}
+.card img {
+  width: 70%;
+  height: auto;
+  margin-bottom: 8px;
+}
+.card div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.priceP {
+  background-color: var(--green-color);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+.card form {
+  text-align: center;
+}
+.card button {
+  /* background-color: var(--lighter-main-color);
+  color: var(--white-text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; */
+  border: 2px solid var(--main-color);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--main-color);
+}
+button:active {
+  transform: scale(0.95);
+}
+.card input[type="number"] {
+  /* height: 30px; */
+  /* padding: 5px; */
+  /* border: 1px solid var(--main-color);
+  border-radius: 5px; */
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid var(--main-color);
+  margin: 2px;
+  border-radius: 5px;
+  padding: 5px;
 }
