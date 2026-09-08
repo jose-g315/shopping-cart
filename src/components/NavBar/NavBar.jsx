@@ -18,10 +18,10 @@ export default function NavBar() {
         <li>
           <Link to='/shop'>Shop</Link>
         </li>
-        <li>
+        <li className={styles.cartLink}>
           <Link to='/cart'>
             Cart
-            <span id='cart-count' data-testid='cart-count'>
+            <span className={styles.cartCount} data-testid='cart-count'>
               {totalItems}
             </span>
           </Link>
