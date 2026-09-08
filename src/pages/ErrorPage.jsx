@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-export default function ErrorPahe() {
+export default function ErrorPage() {
   return (
     <div>
       <h1>404 - Page Not Found</h1>

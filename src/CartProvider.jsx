@@ -38,10 +38,7 @@ export function CartProvider({ children, initialCart = [] }) {
   }
   function removeFromCart(id) {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.product.id === id);
-      if (existingItem) {
-        return prevCart.filter((item) => item.product.id !== id);
-      }
+      return prevCart.filter((item) => item.product.id !== id);
     });
   }
   return (
