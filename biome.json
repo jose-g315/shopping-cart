@@ -6,18 +6,13 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": [
-      "src/**",
-      "tests/**",
-      "index.html",
-      "vite.config.js"
-    ]
+    "includes": ["src/**", "tests/**", "index.html", "vite.config.js"]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 80
+    "lineWidth": 92
   },
   "linter": {
     "enabled": true,
