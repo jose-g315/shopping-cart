@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { CartContext } from '../src/App';
+import { CartContext } from '../src/CartProvider.jsx';
 
 export function renderWithCartContextProvider(
   component,

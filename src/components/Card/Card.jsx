@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { CartContext } from '../../App';
+import { CartContext } from '../../CartProvider.jsx';
 import styles from './Card.module.css';
 
 export default function Card({ id, title, description, price, url }) {
