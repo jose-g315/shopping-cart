@@ -4,10 +4,12 @@
   align-items: center;
   justify-content: space-evenly;
   height: 100%;
-  width: 600px;
+  width: 50%;
+  min-width: 200px;
   border: 1px solid var(--main-color);
   border-radius: 8px;
   padding: 16px;
+  text-wrap: break-word;
 }
 .cartCard img {
   width: 50px;

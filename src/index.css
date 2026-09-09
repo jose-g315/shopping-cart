@@ -1,6 +1,8 @@
 :root {
   font-family: "Montserrat", sans-serif;
   --main-color: #eb3f3f;
+  --lighter-main-color: #ffbcbc;
+  --green-color: #3feb3f;
   --secondary-color: #1e1e1e;
   --accent-color: #cccccc;
   --dark-accent-color: #616060;

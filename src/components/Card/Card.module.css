@@ -15,7 +15,7 @@
   text-decoration: underline;
 }
 .card p {
-  font-size: 1rem;
+  font-size: 12px;
   margin-bottom: 4px;
 }
 .card p:last-of-type {

@@ -5,10 +5,12 @@ import { CartProvider } from './CartProvider';
 
 function App() {
   return (
-    <CartProvider>
-      <NavBar />
-      <Outlet />
-    </CartProvider>
+    <div className='app'>
+      <CartProvider>
+        <NavBar />
+        <Outlet />
+      </CartProvider>
+    </div>
   );
 }
 
