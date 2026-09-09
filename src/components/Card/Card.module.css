@@ -42,11 +42,6 @@
   text-align: center;
 }
 .card button {
-  /* background-color: var(--lighter-main-color);
-  color: var(--white-text-color);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; */
   border: 2px solid var(--main-color);
   font-weight: bold;
   font-size: 1rem;
