@@ -1,0 +1,19 @@
+.cartCardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+  scrollbar-color: var(--main-color) var(--background-color);
+  max-height: 900px;
+  padding: 1rem;
+}
+.orderDetails span {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+hr {
+  border: 1px solid var(--main-color);
+  margin-bottom: 1rem;
+}

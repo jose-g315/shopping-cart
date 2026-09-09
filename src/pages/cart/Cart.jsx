@@ -1,6 +1,7 @@
 import { CartContext } from '../../CartProvider.jsx';
 import CartCard from '../../components/CartCard/CartCard';
 import { useContext } from 'react';
+import styles from './Cart.module.css';
 
 export default function Cart() {
   const cartState = useContext(CartContext);
@@ -12,9 +13,9 @@ export default function Cart() {
   );
 
   return (
-    <div>
+    <div className={styles.cart}>
       <h1>Your Cart</h1>
-      <div className='cart'>
+      <div className={styles.cartCardContainer}>
         {cart.length === 0 ? (
           <p>Cart Empty: Start Shopping!</p>
         ) : (
@@ -34,7 +35,8 @@ export default function Cart() {
       </div>
       <div>
         {cart.length !== 0 ? (
-          <>
+          <div class={styles.orderDetails}>
+            <hr />
             <h2>Order Details</h2>
             <p>
               Total Items:<span>{totalItems}</span>
@@ -42,7 +44,7 @@ export default function Cart() {
             <p>
               Total Amount:<span>${totalAmount.toFixed(2)}</span>
             </p>
-          </>
+          </div>
         ) : null}
       </div>
     </div>

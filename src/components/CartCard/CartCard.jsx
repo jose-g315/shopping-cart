@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CartContext } from '../../CartProvider';
+import styles from './CartCard.module.css';
 
 export default function CartCard({ id, title, price, url, quantity }) {
   const cartState = useContext(CartContext);
@@ -27,20 +28,21 @@ export default function CartCard({ id, title, price, url, quantity }) {
     cartState.removeFromCart(id);
   }
   return (
-    <div>
-      <p>{id}</p>
+    <div className={styles.cartCard}>
       <p>{title}</p>
       <img src={url} alt={title} />
       <p>${price.toFixed(2)}</p>
-      <button type='button' onClick={decrement}>
-        -
-      </button>
-      <p>
-        Quantity: <span data-testid='quantity'>{quantity}</span>
-      </p>
-      <button type='button' onClick={increment}>
-        +
-      </button>
+      <div className={styles.quantityControls}>
+        <button type='button' onClick={decrement}>
+          -
+        </button>
+        <p>
+          Quantity: <span data-testid='quantity'>{quantity}</span>
+        </p>
+        <button type='button' onClick={increment}>
+          +
+        </button>
+      </div>
       <p>Total Price: ${(price * quantity).toFixed(2)}</p>
       <button type='button' onClick={remove}>
         Remove Item
