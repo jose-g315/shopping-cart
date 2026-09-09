@@ -35,7 +35,7 @@ export default function Cart() {
       </div>
       <div>
         {cart.length !== 0 ? (
-          <div class={styles.orderDetails}>
+          <div className={styles.orderDetails}>
             <hr />
             <h2>Order Details</h2>
             <p>

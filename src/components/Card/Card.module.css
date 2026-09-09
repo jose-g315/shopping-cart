@@ -58,14 +58,24 @@ button:active {
   transform: scale(0.95);
 }
 .card input[type="number"] {
-  /* height: 30px; */
-  /* padding: 5px; */
-  /* border: 1px solid var(--main-color);
-  border-radius: 5px; */
   font-size: 1rem;
   font-weight: bold;
   border: 2px solid var(--main-color);
   margin: 2px;
   border-radius: 5px;
   padding: 5px;
+}
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: -300px;
+  background-color: #333;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  transition: right 0.5s ease-in-out;
+}
+
+.toast.show {
+  right: 20px;
 }

@@ -30,12 +30,20 @@ export default function Card({ id, title, description, price, url }) {
       setQuantity(1);
     }
   }
+  function showToast() {
+    const toast = document.querySelector(`.${styles.toast}`);
+    toast.classList.add(styles.show);
+    setTimeout(() => {
+      toast.classList.remove(styles.show);
+    }, 2000);
+  }
   function handleSubmit(e) {
     e.preventDefault();
     const finalQuantity = quantity === '' ? 1 : quantity;
     cartState.addToCart({ id, title, description, price, url }, finalQuantity);
     console.log(`Added ${finalQuantity} of ${title} (${id}) to cart.`);
     setQuantity(1);
+    showToast();
   }
 
   return (
@@ -45,7 +53,7 @@ export default function Card({ id, title, description, price, url }) {
         <p>{description}</p>
       </div>
       <div>
-        <p class={styles.priceP}>${price}</p>
+        <p className={styles.priceP}>${price}</p>
         <img src={url} alt={title} />
       </div>
       <form action='' onSubmit={handleSubmit}>
@@ -76,6 +84,7 @@ export default function Card({ id, title, description, price, url }) {
         <br />
         <button type='submit'>Add to Cart</button>
       </form>
+      <div className={styles.toast}>Item added to cart!</div>
     </div>
   );
 }
