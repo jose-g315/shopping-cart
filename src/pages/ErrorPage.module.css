@@ -1,0 +1,20 @@
+.errorPage {
+  text-align: center;
+  margin-top: 50px;
+  color: var(--text-color);
+}
+.errorPage h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.errorPage p {
+  font-size: 1.5rem;
+}
+.errorPage a {
+  color: var(--main-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+.errorPage a:hover {
+  text-decoration: underline;
+}
