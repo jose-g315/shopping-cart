@@ -1,16 +1,16 @@
 import { CartContext } from '../../CartProvider.jsx';
 import CartCard from '../../components/CartCard/CartCard';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import styles from './Cart.module.css';
 
 export default function Cart() {
   const cartState = useContext(CartContext);
   const cart = cartState.cart;
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const totalAmount = cart.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0
-  );
+  const total = useMemo(() => {
+    const price = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+    const items = cart.reduce((sum, item) => sum + item.quantity, 0);
+    return { price, items };
+  }, [cart]);
 
   return (
     <div className={styles.cart}>
@@ -39,10 +39,10 @@ export default function Cart() {
             <hr />
             <h2>Order Details</h2>
             <p>
-              Total Items:<span>{totalItems}</span>
+              Total Items:<span>{total.items}</span>
             </p>
             <p>
-              Total Amount:<span>${totalAmount.toFixed(2)}</span>
+              Total Amount:<span>${total.price.toFixed(2)}</span>
             </p>
           </div>
         ) : null}

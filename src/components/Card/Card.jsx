@@ -1,10 +1,20 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { CartContext } from '../../CartProvider.jsx';
 import styles from './Card.module.css';
 
 export default function Card({ id, title, description, price, url }) {
   const cartState = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+  const [toast, setToast] = useState(false);
+  const timeOutRef = useRef(null);
+
+  // Cleanup timeout on unmount
+  useEffect(
+    () => () => {
+      clearTimeout(timeOutRef.current);
+    },
+    []
+  );
 
   function increment() {
     setQuantity((prev) => (prev < 10 ? prev + 1 : 10));
@@ -30,20 +40,21 @@ export default function Card({ id, title, description, price, url }) {
       setQuantity(1);
     }
   }
-  function showToast() {
-    const toast = document.querySelector(`.${styles.toast}`);
-    toast.classList.add(styles.show);
-    setTimeout(() => {
-      toast.classList.remove(styles.show);
-    }, 2000);
-  }
   function handleSubmit(e) {
     e.preventDefault();
     const finalQuantity = quantity === '' ? 1 : quantity;
     cartState.addToCart({ id, title, description, price, url }, finalQuantity);
     console.log(`Added ${finalQuantity} of ${title} (${id}) to cart.`);
     setQuantity(1);
-    showToast();
+    setToast(true);
+    // Clear any existing timeout before setting a new one
+    if (timeOutRef.current) {
+      clearTimeout(timeOutRef.current);
+    }
+    // Set a new timeout to hide the toast after 2 seconds
+    timeOutRef.current = setTimeout(() => {
+      setToast(false);
+    }, 2000);
   }
 
   return (
@@ -84,7 +95,7 @@ export default function Card({ id, title, description, price, url }) {
         <br />
         <button type='submit'>Add to Cart</button>
       </form>
-      <div className={styles.toast}>Item added to cart!</div>
+      <div className={toast ? styles.toastShow : styles.toastHide}>Item added to cart!</div>
     </div>
   );
 }

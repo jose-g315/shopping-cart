@@ -2,12 +2,15 @@ import { Link } from 'react-router';
 import styles from './NavBar.module.css';
 import logo from '../../assets/Original.png';
 import { CartContext } from '../../CartProvider.jsx';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 
 export default function NavBar() {
   const cartState = useContext(CartContext);
   const cart = cartState.cart;
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = useMemo(() => {
+    return cart.reduce((sum, item) => sum + item.quantity, 0);
+  }, [cart]);
+
   return (
     <nav className={styles.nav}>
       <img src={logo} alt='Logo' className={styles.logo} />

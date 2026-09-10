@@ -65,7 +65,7 @@ button:active {
   border-radius: 5px;
   padding: 5px;
 }
-.toast {
+.toastHide {
   position: fixed;
   bottom: 20px;
   right: -300px;
@@ -76,6 +76,13 @@ button:active {
   transition: right 0.5s ease-in-out;
 }
 
-.toast.show {
+.toastShow {
   right: 20px;
+  position: fixed;
+  bottom: 20px;
+  background-color: #333;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  transition: right 0.5s ease-in-out;
 }
